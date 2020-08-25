@@ -16,9 +16,9 @@ using std::cout;
 using std::endl;
  
 class ExprTreeEvaluator {
-    map<string,int> memory;
+    map<string,int> memory;//字符串到整形的map映射,保存每一个变量的值例如a = b + 1;
 public:
-    int run(pANTLR3_BASE_TREE);
+    int run(pANTLR3_BASE_TREE);//传入抽象语法树,返回一个值,获得值,
     void set_param(string, int);
     int get_param(string);
 };
@@ -34,17 +34,18 @@ int main(int argc, char* argv[])
   pExprCppTreeParser parser;
  
   assert(argc > 1);
-  input = antlr3FileStreamNew((pANTLR3_UINT8)argv[1],ANTLR3_ENC_8BIT);
+  input = antlr3FileStreamNew((pANTLR3_UINT8)argv[1],ANTLR3_ENC_8BIT);//拿出第一项参数,加载input
   lex = ExprCppTreeLexerNew(input);
   tokens = antlr3CommonTokenStreamSourceNew(ANTLR3_SIZE_HINT,
                                             TOKENSOURCE(lex));
   parser = ExprCppTreeParserNew(tokens);
  
-  ExprCppTreeParser_prog_return r = parser->prog(parser);
-cout << "done" << endl;
-  pANTLR3_BASE_TREE tree = r.tree;
+  ExprCppTreeParser_prog_return r = parser->prog(parser);//所要的是r;
+  cout << "done" << endl;
+  pANTLR3_BASE_TREE tree = r.tree;//r字段是tree,就是抽象语法树
  
-  ExprTreeEvaluator eval;
+  ExprTreeEvaluator eval;//执行表示树的执行者对象
+
   int rr = eval.run(tree);
   cout << "Evaluator result: " << rr << '\n';
  
@@ -65,7 +66,7 @@ void ExprTreeEvaluator::set_param(string name, int val) {
 }
 
 int ExprTreeEvaluator::get_param(string name) {
-    if (memory.find(name) == memory.end()) {
+    if (memory.find(name) == memory.end()) {//当前作用域中找
         throw std::runtime_error("unknown param : " + name);
     }
     return memory[name];
@@ -73,24 +74,24 @@ int ExprTreeEvaluator::get_param(string name) {
 
 int ExprTreeEvaluator::run(pANTLR3_BASE_TREE tree)
 {
-    pANTLR3_COMMON_TOKEN tok = tree->getToken(tree);
+    pANTLR3_COMMON_TOKEN tok = tree->getToken(tree);//取出根节点的信息
     if(tok) {
         switch(tok->type) {
-        case INT: {
+        case INT: {//如果当前根节点是INT
             const char* s = getText(tree);
-            if(s[0] == '~') {
+            if(s[0] == '~') {//如果是~就是-值
                 return -atoi(s+1);
             }
             else {
                 return atoi(s);
             }
         }
-        case ID: {
-            string var(getText(tree));
+        case ID: {//如果当前是ID
+            string var(getText(tree));//提取ID字符串
             return get_param(var);
         }
         case PLUS:
-            return run(getChild(tree,0)) + run(getChild(tree,1));
+            return run(getChild(tree,0)) + run(getChild(tree,1));//左孩子右孩子找
         case MINUS:
             return run(getChild(tree,0)) - run(getChild(tree,1));
         case TIMES:
@@ -117,11 +118,11 @@ int ExprTreeEvaluator::run(pANTLR3_BASE_TREE tree)
         case BLOCK: {
 
         }
-        case ASSIGN: {
-            string var(getText(getChild(tree,0)));
+        case ASSIGN: {//赋值表达式的时候
+            string var(getText(getChild(tree,0)));//获取第一个位置信息
             get_param(var);
             int val = run(getChild(tree,1));
-            memory[var] = val;
+            memory[var] = val;//映射
             return val;
         }
         default:
