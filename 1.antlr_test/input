@@ -1,5 +1,10 @@
-    def a = 97 + b;
+{
+    def a = 97 * 2;
+    def c = 97 / 2;
+    def d = 92 % 2;
     def b = 123 + a;
-    def c = a * 2 + b;
     def i1, i2, i3, i4;
-
+    {
+        a = 123;
+    }
+}

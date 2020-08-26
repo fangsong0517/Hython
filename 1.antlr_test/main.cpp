@@ -152,4 +152,3 @@ const char* getText(pANTLR3_BASE_TREE tree)
 {
     return (const char*) tree->getText(tree)->chars;
 }
-
