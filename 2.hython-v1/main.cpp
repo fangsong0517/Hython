@@ -1,11 +1,12 @@
 /*************************************************************************
 	> File Name: main.cpp
-	> Author:fangsong
-	> Mail: fangsong517@gmail.com
-	> Created Time: 2020年08月24日 星期一 09时56分46秒
+	> Author: fangsong
+    > Mail:2035756541@qq.com
+	> Created Time: 一  8/24 10:24:49 2020
  ************************************************************************/
-#include "ExprCppTreeLexer.h"
-#include "ExprCppTreeParser.h"
+
+#include <hythonLexer.h>
+#include <hythonParser.h>
 #include <cassert>
 #include <map>
 #include <string>
@@ -33,18 +34,18 @@ const char* getText(pANTLR3_BASE_TREE tree);
 int main(int argc, char* argv[])
 {
   pANTLR3_INPUT_STREAM input;
-  pExprCppTreeLexer lex;
+  phythonLexer lex;
   pANTLR3_COMMON_TOKEN_STREAM tokens;
-  pExprCppTreeParser parser;
+  phythonParser parser;
  
   assert(argc > 1);
   input = antlr3FileStreamNew((pANTLR3_UINT8)argv[1],ANTLR3_ENC_8BIT);
-  lex = ExprCppTreeLexerNew(input);
+  lex = hythonLexerNew(input);
   tokens = antlr3CommonTokenStreamSourceNew(ANTLR3_SIZE_HINT,
                                             TOKENSOURCE(lex));
-  parser = ExprCppTreeParserNew(tokens);
+  parser = hythonParserNew(tokens);
  
-  ExprCppTreeParser_prog_return r = parser->prog(parser);
+  hythonParser_prog_return r = parser->prog(parser);
   pANTLR3_BASE_TREE tree = r.tree;
  
   ExprTreeEvaluator eval;
@@ -177,4 +178,3 @@ const char* getText(pANTLR3_BASE_TREE tree)
 {
     return (const char*) tree->getText(tree)->chars;
 }
-
