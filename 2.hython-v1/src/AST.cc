@@ -18,7 +18,7 @@ ASTNode::ASTNode(pANTLR3_BASE_TREE node) : tree(node) {
 
 ASTNode::~ASTNode(){}
 
-void ASTNode::destory() {
+void ASTNode::destroy() {
     parser->free(parser);
     tokens->free(tokens);
     lex->free(lex);

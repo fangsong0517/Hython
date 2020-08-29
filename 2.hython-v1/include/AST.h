@@ -21,7 +21,7 @@ public:
     ASTNode operator[](int);
     bool hasToken();
     int type();
-    void destory();
+    void destroy();
     ~ASTNode();
 
 private:
