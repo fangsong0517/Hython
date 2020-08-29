@@ -1,0 +1,24 @@
+{
+    def a, b, c, d, e;
+    
+    if (a == b) print c, d, e;
+    
+    if (a <= b) {
+        def f = a + b;
+        print f + 1000;
+    } else {
+        print a + b + c;
+    }
+    
+    for (def i = 2; i * i <= 100; i++) {
+        print i;
+    }
+    
+    while (a != b) {
+        print a, b, c;
+    }
+
+    do {
+        print a, b, c;
+    } while (a >= b);
+}
