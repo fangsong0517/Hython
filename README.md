@@ -62,9 +62,6 @@ stmt：代码段；  ->代表重映射。ASSIGN代表：= ；
 ^(ASSIGN ID expr)代表：=号为根节点， ID， expr 分别：左右子树。
 ```
 
-**main.cpp**
-
-![image-20200827004800610](http://test-fangsong-imgsubmit.oss-cn-beijing.aliyuncs.com/img/image-20200827004800610.png)
-
 此处是获取了抽象语法树
 
+![image-20200829110259868](http://test-fangsong-imgsubmit.oss-cn-beijing.aliyuncs.com/img/image-20200829110259868.png)
