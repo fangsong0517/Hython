@@ -52,7 +52,7 @@ for_expr
 
 while_expr
     : WHILE^ '('! condition_expr ')'! stmt
-    | DO '{' stmt '}' WHILE '(' condition_expr ')' ';' -> ^(DOWHILE condition_expr stmt)
+    | DO block_tree WHILE '(' condition_expr ')' ';' -> ^(DOWHILE condition_expr block_tree)
     ;
 
 init_expr
@@ -68,10 +68,12 @@ block
     : '{'! (stmt)* '}'!
     ;
 
+block_tree: block -> ^(BLOCK block);
+
 stmt: condition_expr ';' -> condition_expr  // tree rewrite syntax
     | defid_expr ';' -> ^(DEF defid_expr)
     | ID ASSIGN condition_expr ';' -> ^(ASSIGN ID condition_expr) // tree notation
-    | block -> ^(BLOCK block)
+    | block_tree
     | if_expr
     | for_expr
     | while_expr
@@ -80,9 +82,11 @@ stmt: condition_expr ';' -> condition_expr  // tree rewrite syntax
 
 prog
     : (stmt {
+        #ifdef DEBUG
             pANTLR3_STRING s = $stmt.tree->toStringTree($stmt.tree);
             assert(s->chars);
-            //printf("tree \%s\n", s->chars);
+            printf("tree \%s\n", s->chars);
+        #endif
     })+
     ;
 

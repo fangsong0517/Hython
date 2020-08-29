@@ -11,7 +11,7 @@ void ExprTreeEvaluator::def_param(std::string name, int val) {
     if (memory.find(name) != memory.end()) {
         #ifdef DEBUG
         for (auto x : memory) {
-            cout << "debug log(memory) : " << x.first << " " << x.second << endl;
+            std::cout << "debug log(memory) : " << x.first << " " << x.second << std::endl;
         }
         #endif
         throw std::runtime_error("param redefined : " + name);
@@ -100,6 +100,32 @@ int ExprTreeEvaluator::run(haizei::ASTNode tree) {
         case GE: return run(tree[0]) >= run(tree[1]);
         case LE: return run(tree[0]) <= run(tree[1]);
         case NE: return run(tree[0]) != run(tree[1]);
+        case IF: {
+            if (run(tree[0])) {
+                run(tree[1]);
+            } else if (tree.size() == 3) {
+                run(tree[2]);
+            }
+            return 0;
+        }
+        case FOR: {
+            for (run(tree[0]); run(tree[1]); run(tree[2])) {
+                run(tree[3]);
+            }
+            return 0;
+        }
+        case WHILE: {
+            while (run(tree[0])) {
+                run(tree[1]);
+            }
+            return 0;
+        }
+        case DOWHILE: {
+            do {
+                run(tree[1]);
+            } while (run(tree[0]));
+            return 0;
+        }
         case ASSIGN: {
             std::string var(tree[0].text());
             get_param(var);
