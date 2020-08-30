@@ -44,7 +44,7 @@ http://contrapunctus.net/blog/2012/antlr-c
 
 ### 其他
 
-**.g的作用**
+#### **.g的作用**
 
 ```c
 // The suffix '^' means make it a root.   ^作用：提升至抽象语法树的根节点。
@@ -61,6 +61,10 @@ stmt：代码段；  ->代表重映射。ASSIGN代表：= ；
 ^(ASSIGN ID expr)代表：=号为根节点， ID， expr 分别：左右子树。
 ```
 
-此处是获取了抽象语法树
+#### 抽象语法树
 
 ![image-20200829110259868](http://test-fangsong-imgsubmit.oss-cn-beijing.aliyuncs.com/img/image-20200829110259868.png)
+
+#### 责任链模式
+
+![image-20200830232450309](http://test-fangsong-imgsubmit.oss-cn-beijing.aliyuncs.com/img/image-20200830232450309.png)
