@@ -75,7 +75,7 @@ stmt: condition_expr ';' -> condition_expr  // tree rewrite syntax
     | ID ASSIGN condition_expr ';' -> ^(ASSIGN ID condition_expr) // tree notation
     | block_tree
     | if_expr
-    | for_expr
+    | for_expr -> ^(BLOCK for_expr)
     | while_expr
     | PRINT^ condition_expr (','! condition_expr)* ';'!
     ;

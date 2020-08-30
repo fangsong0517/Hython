@@ -9,9 +9,7 @@
 ### 1. `Antlr` 的基础使用
 
 安装:
-
 http://blog.csdn.net/wfp458113181wfp/article/details/9148577
-
 http://contrapunctus.net/blog/2012/antlr-c
 
 
@@ -35,9 +33,10 @@ http://contrapunctus.net/blog/2012/antlr-c
 7. `while`结构的增加
 8. `do...while`结构的增加
 
+### 3.增加弱类型系统
 
-
-
+1. 用责任链模式改写整体 `ExprTreeEvaluator `类的功能
+2. 设计并实现弱类型系统
 
 
 
