@@ -14,9 +14,9 @@
 
 ### 文件介绍
 
-1. `1.antlr_test`是`Antlr`的基本使用方法的一个小例子(建议先研究)
+1. **1.antlr_test**是`Antlr`的基本使用方法的一个小例子(建议先研究)
 
-2. `2.hython-v1`是`Hython`语言的设计开发源代码
+2. **2.hython-v1**是`Hython`语言的设计开发源代码
 
    **bin**目录下存放的是生成可执行文件`hython`，`hython xx.py`类似`python xx.py`。
 
@@ -30,7 +30,7 @@
 
    **thirdpart**中的`.jar`是编译的时候必备的，和`java`有关系，具体编译参考`makefile`文件，此处`.g`文件是存放文法文本的，自定义语法的地方，`.tokes`是`Antlr`生成的，里面给每种语法字符进行了编上数字，以便于在编写设计程序时的`switch()`方便。
 
-   `makefile`编译文件。
+   **makefile**编译文件。
 
 ### 测试
 
