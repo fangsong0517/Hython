@@ -1,15 +1,53 @@
 ## Hython语言设计与开发
 
-### 项目描述
+### 项目描述:artificial_satellite:
 
-设计一门自己的编程语言
+设计一门自己的编程语言(类似Python解析器)
 
+### 介绍:arrow_heading_down:
 
+为了实战C++设计模式，因此编写一个类似Python的解析器。不言而喻，这是一个很有意义的事情，并且很容易成为了我做过的最酷的项目。通过使用了`Antlr`解析成抽象语法树，可以自定义语法，这很nice!
+
+### 状态:first_quarter_moon_with_face:
+
+更新中...
+
+### 文件介绍:chart_with_upwards_trend:
+
+1. `1.antlr_test`是`Antlr`的基本使用方法的一个小例子(建议先研究)
+
+2. `2.hython-v1`是`Hython`语言的设计开发源代码
+
+   **`bin`**目录下存放的是生成可执行文件`hython`，`hython xx.py`类似`python xx.py`。
+
+   **`include`**存放的头文件，其中`ExprTreeEvaluator.h`、`hythonLexer.h`、`hythonParser.h`是`Antlr`生成的，通常没必要理会。
+
+   **`lib`**存放的你所安装`Antlr`后的`libantlr3c.a`(自行找一下)，和环境有关系，clone下的代码，你必须先把这个`.a`换成你自己的，否则环境不同跑不通。
+
+   **`src`**存放所有的`.c`、`.cc`文件。
+
+   **`testdata`**存放所有的测试数据文件。
+
+   **`thirdpart`**中的`.jar`是编译的时候必备的，和`java`有关系，具体编译参考`makefile`文件，此处`.g`文件是存放文法文本的，自定义语法的地方，`.tokes`是`Antlr`生成的，里面给每种语法字符进行了编上数字，以便于在编写设计程序时的`switch()`方便。
+
+   `makefile`编译文件。
+
+### 测试
+
+测试很简单makefile中把所有的运行自动化在此套件中
+
+```shell
+$make #make debug
+$make run
+```
+
+### 建议学习使用流程:arrow_double_down:
 
 ### 1. `Antlr` 的基础使用
 
 安装:
 http://blog.csdn.net/wfp458113181wfp/article/details/9148577
+
 http://contrapunctus.net/blog/2012/antlr-c
 
 
@@ -68,3 +106,4 @@ stmt：代码段；  ->代表重映射。ASSIGN代表：= ；
 #### 责任链模式
 
 ![image-20200830232450309](http://test-fangsong-imgsubmit.oss-cn-beijing.aliyuncs.com/img/image-20200830232450309.png)
+
