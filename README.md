@@ -31,6 +31,8 @@
    **thirdpart**中的`.jar`是编译的时候必备的，和`java`有关系，具体编译参考`makefile`文件，此处`.g`文件是存放文法文本的，自定义语法的地方，`.tokes`是`Antlr`生成的，里面给每种语法字符进行了编上数字，以便于在编写设计程序时的`switch()`方便。
 
    **makefile**编译文件。
+   
+3. **3.Others**存放的其他。
 
 ### 测试
 
@@ -46,6 +48,7 @@ $make run
 ### 1. `Antlr` 的基础使用
 
 安装:
+
 http://blog.csdn.net/wfp458113181wfp/article/details/9148577
 
 http://contrapunctus.net/blog/2012/antlr-c
@@ -92,7 +95,7 @@ expr ：表达式。冒号后面是表达式。
 
 *号：代表:0 ～多次； +号：代表： 1 ～多次
 
-atom ： 原子操作 ： INT， ID， （ ），等。INT代表整数， ID代表标识符。
+atom ： 原子操作 ： INT， ID， （），等。INT代表整数， ID代表标识符。
 
 stmt：代码段；  ->代表重映射。ASSIGN代表：= ；
 
