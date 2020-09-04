@@ -7,25 +7,26 @@
 
 #ifndef _AST_H
 #define _AST_H
-#include<hythonLexer.h>
-#include<hythonParser.h>
-#include<string>
-namespace haizei{
-class ASTNode{
-public:
 
+#include <hythonLexer.h>
+#include <hythonParser.h>
+#include <string>
+
+namespace haizei {
+
+class ASTNode {
+public :
     ASTNode(const char *file_name);
     ASTNode(pANTLR3_BASE_TREE);
-    int size();
+    int size() const;
     std::string text();
     ASTNode operator[](int);
-    bool hasToken();
-    int type();
+    bool hasToken() const;
+    int type() const;
     void destroy();
     ~ASTNode();
 
 private:
-
     pANTLR3_INPUT_STREAM input;
     phythonLexer lex;
     pANTLR3_COMMON_TOKEN_STREAM tokens;
@@ -35,5 +36,7 @@ private:
 
     void init_tree(const char *file_name);
 };
-}//end of namespace haizei
+
+} // end of namespace haizei
+
 #endif

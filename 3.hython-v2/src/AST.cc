@@ -1,8 +1,7 @@
-#include<AST.h>
-#include<iostream>
+#include <AST.h>
+#include <iostream>
 
-
-namespace haizei{
+namespace haizei {
 
 ASTNode::ASTNode(const char *file_name) {
     init_tree(file_name);
@@ -16,52 +15,52 @@ ASTNode::ASTNode(pANTLR3_BASE_TREE node) : tree(node) {
     tok = tree->getToken(tree);
 }
 
-ASTNode::~ASTNode(){}
+ASTNode::~ASTNode() {}
 
 void ASTNode::destroy() {
     parser->free(parser);
     tokens->free(tokens);
     lex->free(lex);
     input->free(input);
-    return;
+    return ;
 }
 
-int ASTNode::size(){
+int ASTNode::size() const {
     return tree->getChildCount(tree);
 }
 
 std::string ASTNode::text() {
     return std::string((char *)tree->getText(tree)->chars);
 }
-
-bool ASTNode::hasToken() {
-    if(tok) return true;
+    
+bool ASTNode::hasToken() const {
+    if (tok) return true;
     return false;
 }
 
-int ASTNode::type() {
+int ASTNode::type() const {
     return tok->type;
 }
 
 ASTNode ASTNode::operator[](int i) {
-    if(i < 0 || i >= this->size()) {
+    if (i < 0 || i >= this->size()) {
         throw std::runtime_error("ASTNode index error");
     }
-    return (pANTLR3_BASE_TREE) tree->getChild(tree, i);
+    return (pANTLR3_BASE_TREE)tree->getChild(tree, i);
 }
 
-
-    
 void ASTNode::init_tree(const char *file_name) {
     input = antlr3FileStreamNew((pANTLR3_UINT8)file_name,ANTLR3_ENC_8BIT);
     lex = hythonLexerNew(input);
     tokens = antlr3CommonTokenStreamSourceNew(ANTLR3_SIZE_HINT,
                                             TOKENSOURCE(lex));
     parser = hythonParserNew(tokens);
+ 
     hythonParser_prog_return r = parser->prog(parser);
     this->tree = r.tree;
-    this->tok = tree->getToken(tree);
-    return;
+    this->tok = this->tree->getToken(this->tree);
+    return ;
 }
 
-}
+} // end of namespace haizei
+

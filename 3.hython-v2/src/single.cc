@@ -2,7 +2,10 @@
 
 namespace haizei {
 
-int MasterChainSingle::run(ASTNode &node, std::shared_ptr<Parameter> &p) {
+const IHandle *MasterChainSingle::object = nullptr;
+std::mutex Singleton::m_mutex;
+
+int MasterChainSingle::run(ASTNode node, std::shared_ptr<Parameter> &p) {
     const IHandle *h = get();
     int ret = 0;
     while (h != nullptr) {
@@ -10,7 +13,8 @@ int MasterChainSingle::run(ASTNode &node, std::shared_ptr<Parameter> &p) {
             h = h->next();
             continue; 
         }
-        // 执行对应的 master 的 run 方法
+        auto m = h->getMaster();
+        ret = m->run(node, p);
         break;
     }
     return ret;

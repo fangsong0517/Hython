@@ -12,19 +12,14 @@
 #include <map>
 #include <AST.h>
 
+namespace haizei {
+
 class ExprTreeEvaluator {
 public:
     ExprTreeEvaluator();
-    ExprTreeEvaluator(ExprTreeEvaluator *);
     int run(haizei::ASTNode);
-    void def_param(std::string, int);
-    void set_param(std::string, int);
-    int get_param(std::string);
-    ExprTreeEvaluator *next;
-
-private :
-    std::map<std::string,int> memory;
 };
 
-#endif
+}
 
+#endif

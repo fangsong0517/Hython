@@ -13,12 +13,12 @@
 #include <iostream>
 #include <ExprTreeEvaluator.h>
 #include <AST.h>
- 
-int main(int argc, char* argv[]) {
+
+int main(int argc, char *argv[]){
     assert(argc > 1);
     haizei::ASTNode tree(argv[1]);
-    
-    ExprTreeEvaluator eval;
+
+    haizei::ExprTreeEvaluator eval;
     int rr = eval.run(tree);
     tree.destroy();
     return 0;

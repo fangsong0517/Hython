@@ -21,12 +21,12 @@ protected:
 
 class MasterChainSingle : public Singleton {
 public :
-    static int run(ASTNode &, std::shared_ptr<Parameter> &);
+    static int run(ASTNode, std::shared_ptr<Parameter> &);
 private:
-    static const Handle *get();
+    static const IHandle *get();
     MasterChainSingle() = delete;
-    static const Handle *SingleInit();
-    static const Handle *object;
+    static const IHandle *SingleInit();
+    static const IHandle *object;
 };
 
 }
