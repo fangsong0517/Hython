@@ -71,11 +71,19 @@ http://contrapunctus.net/blog/2012/antlr-c
 6. `for`结构的增加
 7. `while`结构的增加
 8. `do...while`结构的增加
+9. 找 bug`非常关键，能够理解 bug，才能锻炼思维`
+
+## 拆解 ExprTreeEvaluator 的功能
+
+1. 用责任链模式改写整体 `ExprTreeEvaluator `类的功能
+2. 增加责任链的单例模式，MasterChianSingle 类
+3. 增加 master 类
+4. 增加了作用域 parameter 类
+5. `找到程序中的bug`
 
 ## 增加弱类型系统
 
-1. 用责任链模式改写整体 `ExprTreeEvaluator `类的功能
-2. 设计并实现弱类型系统
+cd .
 
 ## 其他
 
