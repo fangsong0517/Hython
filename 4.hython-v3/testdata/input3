@@ -1,0 +1,21 @@
+{
+    def a = 1, b = 2;
+    if (a < b) print a, b;
+    else print 1000;
+    
+    for (def i = 1; i <= 5; i = i + 1) {
+        print i;
+    }
+
+    def j = 1;
+    while (j <= 5) {
+        print j;
+        j = j + 1;
+    }
+
+    do {
+        print j;
+        j = j + 1;
+    } while (j <= 10);
+}
+

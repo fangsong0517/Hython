@@ -1,0 +1,19 @@
+{
+    def a = 100;
+    def b = 123 + a;
+    def c = a * 2 + b;
+    def i1, i2, i3, i4;
+    {
+        def d = a + 12;
+        print a, d;
+        a = 500;
+        def a = 10000;
+        def e = a + 12;
+        print a, e;
+        a = 1000;
+        def g = a + 20;
+    }
+    def f = a + 12;
+    print a, f;
+}
+
